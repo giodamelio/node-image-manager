@@ -1,0 +1,8 @@
+{
+  "name": "node-image-manager",
+  "version": "0.1.0",
+  "description": "A web based photo manager written in node.",
+  "author": "Gio d'Amelio",
+  "repository": "",
+  "license": "BSD"
+}
