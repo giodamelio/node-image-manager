@@ -1,18 +1,11 @@
-express = require "express" 
-restful = require "node-restful"
-mongoose = restful.mongoose
-app = express()
+restify = require "restify"
 
-app.use express.bodyParser()
-app.use express.query() 
+respond = (req, res, next) ->
+    res.send {hello: req.params.name}
 
-mongoose.connect "mongodb://localhost/node-image-manager"
+server = restify.createServer()
+server.get "/hello/:name", respond
+server.head "/hello/:name", respond
 
-Computer = restful.model "Computer", mongoose.Schema
-    name: String,
-    ram: Number,
-    awesome: Boolean
-Computer.methods ["get", "post", "put", "delete"]
-Computer.register app, "/computers"
-
-app.listen 3141
+server.listen 3141, ->
+    console.log "%s listening at %s", server.name, server.url
