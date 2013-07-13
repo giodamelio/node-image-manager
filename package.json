@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "A web based photo manager written in node.",
   "author": "Gio d'Amelio",
-  "repository": "",
+  "repository": "https://github.com/giodamelio/node-image-manager.git",
+  "dependencies": {
+    "express": "~3.3.4",
+    "swagger-node-express": "~1.2.3"
+  },
   "license": "BSD"
 }
