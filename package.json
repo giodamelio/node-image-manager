@@ -6,7 +6,8 @@
   "repository": "https://github.com/giodamelio/node-image-manager.git",
   "dependencies": {
     "express": "~3.3.4",
-    "swagger-node-express": "~1.2.3"
+    "swagger-node-express": "~1.2.3",
+    "mongoose": "~3.6.14"
   },
   "license": "BSD"
 }
