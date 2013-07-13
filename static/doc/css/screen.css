@@ -413,6 +413,10 @@ body #header a#logo {
     color: white;
 }
 
+.no-logo {
+    background: none !important;
+}
+
 body #header form#api_selector {
     display: block;
     clear: none;

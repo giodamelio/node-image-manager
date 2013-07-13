@@ -15,7 +15,8 @@ var helloWorldModel = {
             "id": "HelloWorld",
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "required": true
                 }
             }
         }
@@ -34,7 +35,6 @@ var helloWorld = {
         ],
         "responseClass" : "HelloWorld",
         "errorResponses" : [
-            swagger.errors.invalid("id"),
             swagger.errors.notFound("helloWorld")
         ],
         "nickname" : "helloWorld"
