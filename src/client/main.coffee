@@ -1,4 +1,8 @@
 $(document).ready ->
     $("#sayHello").click ->
-        $.getJSON "/api/hello/" + encodeURIComponent($("#name").val()), (data) ->
-            $("#response").val JSON.stringify data
+        $.ajax 
+            url: "/api/hello/" + encodeURIComponent($("#name").val())
+            headers:
+               "Authorization": "Basic " + btoa($("#username").val() + ":" + $("#password").val())
+            success: (data) ->
+                $("#response").val JSON.stringify data
