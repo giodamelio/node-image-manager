@@ -1,0 +1,22 @@
+.nav-bar {
+    background: #3499DB;
+    color: white;
+    height: 45px;
+}
+
+.login-box {
+    background: #8AC6ED;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+
+.red {
+    background: red;
+}
+
+.border {
+    border: 1px solid black;
+}
