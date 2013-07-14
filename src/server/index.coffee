@@ -1,4 +1,6 @@
 express = require "express"
+
+# Setup exress
 app = express()
 
 app.use express.bodyParser()
