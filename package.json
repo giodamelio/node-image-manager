@@ -6,11 +6,10 @@
   "repository": "https://github.com/giodamelio/node-image-manager.git",
   "dependencies": {
     "express": "~3.3.4",
-    "mongoose": "~3.6.14",
     "connect": "~2.8.4",
     "bcrypt": "~0.7.6",
     "connect-auth": "~0.6.1",
-    "mongorest": "~0.1.0"
+    "auto-crud": "~0.2.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
