@@ -1,17 +1,22 @@
 restify = require "restify"
 connect = require "connect"
+mongoose = require "mongoose"
 
+# Get the mongo connection
+mongoose.connect "mongodb://localhost/node-image-manager"
+
+# Make the restify server
 server = restify.createServer
     name: "node-image-manager",
+
+# Check the users authorization
 server.use restify.authorizationParser()
 server.use (req, res, next) ->
-    console.log req.authorization
+    #console.log req.authorization
     next()
 
-respond = (req, res, next) ->
-    res.send {hello: req.params.name}
-
-server.get "/hello/:name", respond
+# The user resource
+server.post "/users/register", require("./resources/users").register
 
 app = connect()
 app.use connect.bodyParser()
