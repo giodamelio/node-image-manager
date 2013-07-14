@@ -7,6 +7,7 @@ basePath = "node_modules/.bin/"
 coffeePath = basePath + "coffee"
 browserifyPath = basePath + "browserify"
 nodemonPath = basePath + "nodemon"
+mochaPath = basePath + "mocha"
 
 spawn = (cmd, options) ->
     child_process = require "child_process"
@@ -16,7 +17,7 @@ spawn = (cmd, options) ->
 
 desc "Default task."
 task "default", ->
-    console.log "Hello World"
+    jake.Task["watch:all"].execute()
 
 desc "Start the server."
 task "server", async: true, ->
@@ -83,4 +84,7 @@ namespace "watch", ->
         console.log "Watching the server..."
         spawn nodemonPath, ["--watch", "lib/server", "lib/server/index.js"]
 
-
+desc "Run the tests."
+task "test", ->
+    spawn "node", ["lib/server/index.js"]
+    spawn mochaPath, ["test"]
