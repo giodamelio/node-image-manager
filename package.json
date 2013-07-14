@@ -16,7 +16,9 @@
     "grunt": "~0.4.1",
     "grunt-contrib-coffee": "~0.7.0",
     "grunt-contrib-watch": "~0.4.4",
-    "grunt-browserify": "~1.2.0"
+    "grunt-browserify": "~1.2.0",
+    "grunt-concurrent": "~0.3.0",
+    "grunt-nodemon": "0.0.8"
   },
   "license": "BSD"
 }
