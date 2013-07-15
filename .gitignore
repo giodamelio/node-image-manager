@@ -1,3 +1,4 @@
 node_modules
-lib
-static/bundle.js
+server/lib
+client/lib
+client/bundle.js
