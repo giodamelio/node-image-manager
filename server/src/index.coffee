@@ -1,6 +1,7 @@
 express = require "express"
 mongoose = require "mongoose"
 connectMongo = require "connect-mongo"
+connectAuth = require "connect-auth"
 
 # Setup exress
 app = express()
@@ -17,12 +18,23 @@ api.use express.session
         url: "mongodb://localhost/node-image-manager"
     secret: "1234567890QWERTY"
     cookie:
-        maxAge: 1000 * 60
+        maxAge: 1000 * 60 * 5
 
 # Setup mongoose connection
 mongoose.connect "mongodb://localhost/node-image-manager"
 
 # Setup the api
+
+# Authenticate the user
+api.use connectAuth
+    strategies:
+        connectAuth.Basic validatePassword: require("./auth").validatePassword
+
+# Setup login, logout and register
+api.post "/login", require("./auth").login
+api.post "/logout", require("./auth").logout
+api.post "/register", require("./auth").register
+api.get "/me", require("./auth").me
 
 # User resource
 api.get "/users", require("./resources/users").findAll
