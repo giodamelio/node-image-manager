@@ -20,9 +20,20 @@ task "default", ->
     jake.Task["watch:all"].execute()
 
 desc "Start the server."
-task "server", async: true, ->
+task "server", ->
     console.log "Starting the server..."
-    spawn "node", ["lib/server/index.js"]
+    child_process = require "child_process"
+    p = child_process.spawn "node", ["server/lib/index.js"]
+    # Hacky solution to make the tests run after the server has started
+    first = true
+    here = @
+    p.stdout.on "data", (data) ->
+        process.stdout.write data.toString()
+        if first
+            here.emit "gogogo"
+            first = false
+    here.on "killkillkill", ->
+        p.kill(0)
 
 namespace "coffee", ->
     desc "Compile all the coffeescript."
@@ -84,7 +95,18 @@ namespace "watch", ->
         console.log "Watching the server..."
         spawn nodemonPath, ["--watch", "server/lib/", "server/lib/index.js"]
 
-desc "Run the tests."
-task "test", ->
-    spawn "node", ["server/lib/index.js"]
-    spawn mochaPath, ["test"]
+namespace "test", ->
+    desc "Run the server tests"
+    task "server", ->
+        server = jake.Task["server"]
+        # Hacky solution to make the tests run after the server has started
+        server.on "gogogo", ->
+            child_process = require "child_process"
+            p = child_process.spawn mochaPath, "--require should --reporter spec --compilers coffee:coffee-script --colors server/test".split " "
+            p.stdout.on "data", (data) ->
+                process.stdout.write data.toString()
+            p.on "exit", ->
+                # Kill the server
+                server.emit "killkillkill"
+        server.execute()
+        
