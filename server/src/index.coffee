@@ -35,7 +35,7 @@ api.delete "/users/:id", require("./resources/users").delete
 app.use "/api", api
 
 # Serve static files
-app.use express.static require("path").normalize __dirname + "/../../static"
+app.use express.static require("path").normalize __dirname + "/../../client"
 
 console.log "Listening on port 3141"
 app.listen 3141
