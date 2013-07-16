@@ -102,7 +102,7 @@ namespace "test", ->
         # Hacky solution to make the tests run after the server has started
         server.on "gogogo", ->
             child_process = require "child_process"
-            p = child_process.spawn mochaPath, "--require should --reporter spec --compilers coffee:coffee-script --colors server/test".split " "
+            p = child_process.spawn mochaPath, "--require should --reporter spec --timeout 300 --compilers coffee:coffee-script --colors server/test".split " "
             p.stdout.on "data", (data) ->
                 process.stdout.write data.toString()
             p.on "exit", ->
